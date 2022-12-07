@@ -9,11 +9,13 @@
 <h1 style="color: #536872;text-align: center">Добавление чека</h1>
 <form th:action = "${'/Add/check'}" method="post" style="text-align: center" th:object="${checks}">
 
-    <label> ИНН</label>
-    <input  style="text-align:  center;height: 30px;width: 300px; margin-bottom: 20px"
-            th:field="*{inn}" type="text" maxlength="10" name="inn"><br>
-    <div style="color: black" th:if="${#fields.hasErrors('inn')}" th:errors="*{inn}"></div><br>
-
+    <label> Товар:</label>
+    <select style="margin-bottom: 20px;height: 30px;width: 300px" th:field="*{tovar}" name="nametovar" >
+        <div th:each="element : ${tovar}">
+            <option  th:value="${element.getId()}" th:text="${element.nametovar}"></option>
+        </div>
+    </select><br>
+    <br>
     <label> Сумма заказа</label>
     <input  style="text-align: center;height: 30px;width: 300px; margin-bottom: 20px"
             th:field="*{summi}" type="text" maxlength="6" name="summi"><br>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <title>Магазин спортивного инвентаря</title>
@@ -7,7 +7,7 @@
 </head>
 <body background="https://siss.ru/uploads/firm/gallery/276449/458544/medium.jpg">
 <h1 style="text-align: center;color: #536872" > Редактировать данные об аренде</h1>
-<form th:action = "@{/Personal/{id}/edit(id=${arenda.id})}" method="post" style="text-align: center"  th:object="${personal}" >
+<form th:action="@{/Personal/{id}/edit(id=${personal.id})}" method="post" style="text-align: center"  th:object="${personal}" >
   <label> User Name :</label><br>
   <input maxlength="20" type="text" name="username"/> <br>
 
@@ -74,7 +74,7 @@
 
   <label> Номер трудовой книжки:</label><br>
   <select style="margin-bottom: 20px" name="nomer" th:field="*{laborbook}" >
-    <div th:each="element : ${laborbooks}" >
+    <div th:each="element : ${laborbook}" >
       <option th:value="${el?.getId()}" th:text="${element.nomer}"></option>
     </div>
   </select><br>
@@ -88,7 +88,7 @@
   </select>
   <button class="btn btn-warning" style="color: #415159; size: 50px; border:#000000;  background:#91B6C7;height: 30px;width: 300px;margin-bottom: 20px" type="submit">Сохранить изменения</button><br>
 </form>
-<form th:action="'/MainSotr" method="get" style="text-align: center">
+<form th:action = "@{/MainSotr}" method="get" style="text-align: center">
   <button style="color: #415159; size: 50px; border:#000000;
      background:#91B6C7;height: 30px;width: 300px" type="submit" class="btn btn-warning">Назад</button>
 </form>

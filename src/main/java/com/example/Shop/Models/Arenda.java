@@ -12,15 +12,18 @@ public class Arenda {
     @Size(min = 2, max = 30,message = "Размер данного поля должен быть в диапазоне от 2 до 30")
     @Pattern(regexp = "^([а-яА-Яё]+)$",
             message = "Значение должно содержать буквы русского  алфавита")
+    @NotBlank
     private String street;
 
     @NotEmpty(message = "Поле не может быть пустым")
+    @NotBlank
     private String datenachala;
 
     @NotEmpty(message = "Поле не может быть пустым")
     @Size(min = 2, max = 10,message = "Размер данного поля должен быть в диапазоне от 2 до 10")
     @Pattern(regexp = "^([0-9]+)$",
             message = "Значение должно содержать цифры")
+    @NotBlank
     private String nomerdogovora;
 
     @ManyToOne(optional = true, cascade = CascadeType.ALL)

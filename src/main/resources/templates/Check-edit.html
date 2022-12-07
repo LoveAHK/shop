@@ -9,9 +9,12 @@
 <h1 style="text-align: center;color: #536872" > Редактировать данные о чеке</h1>
 <form th:action = "@{/Check/{id}/edit(id=${checks.id})}" method="post" style="text-align: center"  th:object="${checks}" >
 
-    <label style="text-align: center"> ИНН:</label><br>
-    <input  style="text-align: center;height: 30px;width: 300px;margin-bottom: 20px" maxlength="10" th:value="${checks.getInn()}" th:field="*{inn}"   name="inn"  type="text"  ><br>
-    <div style="color: black" th:if="${#fields.hasErrors('inn')}" th:errors="*{inn}"></div><br>
+    <label> Товар:</label>
+    <select style="margin-bottom: 20px;height: 30px;width: 300px"  th:field="*{tovar}" name="nametovar" >
+        <div th:each="el : ${tovar}">
+            <option th:value="${el.getId()}" th:text="${el.nametovar}"></option>
+        </div>
+    </select><br>
 
     <label style="text-align: center"> Сумма:</label><br>
     <input  style="text-align: center;height: 30px;width: 300px;margin-bottom: 20px" th:value="${checks.getSummi()}" th:field="*{summi}" maxlength="6"   name="summi"  type="text"  ><br>

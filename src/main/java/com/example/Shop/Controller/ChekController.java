@@ -1,10 +1,12 @@
 package com.example.Shop.Controller;
 
 
+import antlr.ASTNULLType;
 import com.example.Shop.Models.*;
 import com.example.Shop.repo.ChecksRepository;
 import com.example.Shop.repo.OplatasposobRepository;
 import com.example.Shop.repo.SotrudnikRepository;
+import com.example.Shop.repo.TovarRepository;
 import org.hibernate.annotations.Check;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +27,9 @@ public class ChekController {
     private SotrudnikRepository sotrudnikRepository;
     @Autowired
     private OplatasposobRepository oplatasposobRepository;
+    @Autowired
+    private TovarRepository tovarRepository;
+
     @GetMapping("/MainCheck")
     public String GetRab(Model model) {
         Iterable<Checks> cheks = checksRepository.findAll();
@@ -37,8 +42,10 @@ public class ChekController {
 
         Iterable<Personal> personal = sotrudnikRepository.findAll();
         Iterable<Oplatasposob> oplatasposob = oplatasposobRepository.findAll();
+        Iterable<Tovar> tovar = tovarRepository.findAll();
         model.addAttribute("personals",personal);
         model.addAttribute("oplatasposob",oplatasposob);
+        model.addAttribute("tovar",tovar);
         return  "Add-check";
     }
 
@@ -48,8 +55,10 @@ public class ChekController {
     {
         Iterable<Personal> personals = sotrudnikRepository.findAll();
         Iterable<Oplatasposob> oplatasposob = oplatasposobRepository.findAll();
+        Iterable<Tovar> tovar = tovarRepository.findAll();
         model.addAttribute("personals",personals);
         model.addAttribute("oplatasposob",oplatasposob);
+        model.addAttribute("tovar",tovar);
         if (bindingResult.hasErrors()) {
             return "Add-check";
         }
@@ -78,8 +87,10 @@ public class ChekController {
         model.addAttribute("checks",checks);
         Iterable<Personal> personals = sotrudnikRepository.findAll();
         Iterable<Oplatasposob> oplatasposob = oplatasposobRepository.findAll();
+        Iterable<Tovar> tovar = tovarRepository.findAll();
         model.addAttribute("personals",personals);
         model.addAttribute("oplatasposob",oplatasposob);
+        model.addAttribute("tovar",tovar);
         return "Check-edit";
 
     }
@@ -89,8 +100,10 @@ public class ChekController {
     {
         Iterable<Personal> personals = sotrudnikRepository.findAll();
         Iterable<Oplatasposob> oplatasposob = oplatasposobRepository.findAll();
+        Iterable<Tovar> tovar = tovarRepository.findAll();
         model.addAttribute("personals",personals);
         model.addAttribute("oplatasposob",oplatasposob);
+        model.addAttribute("tovar",tovar);
         checks.setId(id);
         if (bindingResult.hasErrors()) {
             return "Check-edit";
@@ -110,9 +123,9 @@ public class ChekController {
         return "Search-check";
     }
     @PostMapping("/Search/check")
-    public String simpleSearch(@RequestParam String inn, Model model)
+    public String simpleSearch(@RequestParam Tovar tovar, Model model)
     {
-        List<Checks> cheks = checksRepository.findByInnContains(inn);
+        List<Checks> cheks = checksRepository.findByTovarContains(tovar.getNametovar());
         model.addAttribute("cheks", cheks);
         return "Search-check";
     }

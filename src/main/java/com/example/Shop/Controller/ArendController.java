@@ -40,9 +40,10 @@ public class ArendController {
         return  "Add-arenda";
     }
     @PostMapping("/Add/arenda")
-    public String blogPostAdd( @ModelAttribute("arenda") Arenda arenda, BindingResult bindingResult,
+    public String blogPostAdd( @ModelAttribute("arenda")@Valid Arenda arenda, BindingResult bindingResult,
                                Model model)
     {
+
         Iterable<Mesto> mesto = mestoRepository.findAll();
         model.addAttribute("mesto",mesto);
         if (bindingResult.hasErrors()) {

@@ -14,23 +14,18 @@ public class Checks {
     private int summi,kolvotovar;
 
 
-    public Checks(int summi, int kolvotovar, String inn, Oplatasposob oplatasposob, Personal personal) {
+    public Checks(int summi, int kolvotovar, Tovar tovar, Oplatasposob oplatasposob, Personal personal) {
         this.summi = summi;
         this.kolvotovar = kolvotovar;
-        this.inn = inn;
+        this.tovar = tovar;
         this.oplatasposob = oplatasposob;
         this.personal = personal;
     }
-    @NotEmpty(message = "Заполните поле")
-    @Size(min = 1, max = 12,message = "Размер данного поля должен быть в диапазоне от 1 до 12")
-    @Pattern(regexp = "^([0-9]+)$",
-            message = "Значение должно содержать цифры")
-    private String inn;
 
     public Checks() {
     }
 
-    public Checks(String inn, int summi, int kolvotovar, Personal personal, Oplatasposob oplatasposob) {
+    public Checks(int summi, int kolvotovar,Tovar tovar, Personal personal, Oplatasposob oplatasposob) {
     }
 
 
@@ -51,14 +46,6 @@ public class Checks {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getInn() {
-        return inn;
-    }
-
-    public void setInn(String inn) {
-        this.inn = inn;
     }
 
     public int getSummi() {
@@ -86,10 +73,19 @@ public class Checks {
         this.oplatasposob = oplatasposob;
     }
 
+    public Tovar getTovar() {
+        return tovar;
+    }
+
+    public void setTovar(Tovar tovar) {
+        this.tovar = tovar;
+    }
     @ManyToOne(optional = true, cascade = CascadeType.ALL)
     private Oplatasposob oplatasposob;
     @ManyToOne(optional = true, cascade = CascadeType.ALL)
     private Personal personal;
+    @ManyToOne(optional = true, cascade = CascadeType.ALL)
+    private Tovar tovar;
 
     public Personal getPersonal() {
         return personal;

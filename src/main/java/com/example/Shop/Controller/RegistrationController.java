@@ -96,7 +96,7 @@ public class RegistrationController {
         model.addAttribute("personal",personal);
         Iterable<Mesto> mesto = mestoRepository.findAll();
         Iterable<Laborbook> laborbook = laborbookRepository.findAll();
-        model.addAttribute("personals",mesto);
+        model.addAttribute("mesto",mesto);
         model.addAttribute("laborbook",laborbook);
         return "Personal-edit";
 
@@ -107,7 +107,7 @@ public class RegistrationController {
     {
         Iterable<Mesto> mesto = mestoRepository.findAll();
         Iterable<Laborbook> laborbook = laborbookRepository.findAll();
-        model.addAttribute("personals",mesto);
+        model.addAttribute("mesto",mesto);
         model.addAttribute("laborbook",laborbook);
         personal.setId(id);
         if (bindingResult.hasErrors()) {
