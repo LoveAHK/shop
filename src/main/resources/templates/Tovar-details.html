@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Магазин спортивного инвентаря</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+</head>
+<body background="https://siss.ru/uploads/firm/gallery/276449/458544/medium.jpg">
+<div th:each="el : ${tovar}" style="text-align: center"  >
+  <h1 style="text-align: center;color: #536872">Информация о товаре </h1>
+
+  <label style="text-align: center"> Название товара:</label>
+  <p style="text-align: center" th:text="${el.getNametovar()}"></p>
+  <label style="text-align: center"> Тип товара:</label>
+  <p style="text-align: center" th:text="${el.getProducttype()?.getTiptovara()}"></p>
+  <label style="text-align: center"> Производитель:</label>
+  <p style="text-align: center" th:text="${el.getProizvod()?.getCountry()}"></p>
+
+
+  <form th:action="'/Tovar/' + ${el.id} + '/edit'" method="get">
+    <button style="color: #415159; size: 50px; border:#000000; margin-bottom: 20px;
+     background:#91B6C7;height: 30px;width: 300px" type="submit" class="btn btn-warning">Редактировать</button><br>
+  </form>
+
+  <form th:action="'/Tovar/' + ${el.id} + '/remove'" method="post">
+    <button style="color: #415159; size: 50px; border:#000000; margin-bottom: 20px;
+     background:#91B6C7;height: 30px;width: 300px" type="submit" class="btn btn-warning">Удалить</button><br>
+  </form>
+
+  <form th:action="'/MainTovar'" method="get">
+    <button style="color: #415159; size: 50px; border:#000000;
+     background:#91B6C7;height: 30px;width: 300px" type="submit" class="btn btn-warning">Назад</button>
+  </form>
+</div>
+</body>
+</html>

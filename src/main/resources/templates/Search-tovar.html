@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Магазин спортивного инвентаря</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+</head>
+<body background="https://siss.ru/uploads/firm/gallery/276449/458544/medium.jpg">
+<h2 style="text-align: center;color: #536872" >Поиск товара</h2>
+<form method="post" th:action="${'/Search/tovar'}">
+    <input type="text" name="nametovar" style="margin-bottom: 20px;height: 30px;width: 300px"><br>
+    <button class="btn btn-warning" style="color: #415159; size: 50px; border:#000000;  background:#91B6C7;
+  height: 30px;width: 300px;margin-bottom: 20px" type="submit">Поиск</button>
+</form>
+<form th:action="'/MainTovar'" method="get">
+    <button style="color: #415159; size: 50px; border:#000000;
+     background:#91B6C7;height: 30px;width: 300px" type="submit" class="btn btn-warning">Назад</button>
+</form>
+<div th:each="el : ${result}"  style="text-align: center">
+    <label style="text-align: center"> Название товара:</label>
+    <p style="text-align: center" th:text="${el.getNametovar()}"></p>
+    <label style="text-align: center"> Тип товара:</label>
+    <p style="text-align: center" th:text="${el.getProducttype()?.getTiptovara()}"></p>
+    <label style="text-align: center"> Производитель:</label>
+    <p style="text-align: center" th:text="${el.getProizvod()?.getCountry()}"></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Магазин спортивного инвентаря</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+</head>
+<body background="https://siss.ru/uploads/firm/gallery/276449/458544/medium.jpg">
+<h2 style="text-align: center;color: #536872" >Поиск чека</h2>
+<form method="post" th:action="${'/Search/check'}">
+    <input type="text" name="inn" style="margin-bottom: 20px;height: 30px;width: 300px"><br>
+    <button style="color: #415159; size: 50px; border:#000000;  background:#91B6C7;
+  height: 30px;width: 300px;margin-bottom: 20px" type="submit">Поиск</button>
+</form>
+<form th:action="'/MainCheck'" method="get">
+    <button style="color: #415159; size: 50px; border:#000000;
+     background:#91B6C7;height: 30px;width: 300px" type="submit" class="btn btn-warning">Назад</button>
+</form>
+
+
+<div th:each="el : ${cheks}" style="text-align: center">
+    <label style="text-align: center"> ИНН:</label>
+    <p style="text-align: center" th:text="${el.getInn()}"></p>
+    <label style="text-align: center"> Сумма:</label>
+    <p style="text-align: center" th:text="${el.getSummi()}"></p>
+    <label style="text-align: center"> Количество товара:</label>
+    <p style="text-align: center" th:text="${el.getKolvotovar()}"></p>
+    <label style="text-align: center"> Способ оплаты:</label>
+    <p style="text-align: center" th:text="${el.getOplatasposob()?.getSposobsale()}"></p>
+    <label style="text-align: center"> Сотрудник:</label>
+    <p style="text-align: center" th:text="${el.getPersonal()?.getSurname()}"></p>
+</div>
+</body>
+</html>
